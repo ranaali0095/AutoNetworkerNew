@@ -1,0 +1,275 @@
+<script>
+	loadCSS("assets/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css");
+	loadCSS("assets/plugins/select2/css/select2.css");
+	loadCSS("assets/plugins/select2/css/select2-bootstrap.css");
+	loadCSS("assets/plugins/daterangepicker/css/daterangepicker-bs3.css");
+	loadCSS("assets/plugins/modal/css/component.css");
+
+	var requireJS = [
+		"assets/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js" ,
+		"assets/plugins/sparkline/jquery.sparkline.min.js" ,
+		"assets/plugins/autosize/jquery.autosize.min.js" ,
+		"assets/plugins/easypiechart/js/jquery.easypiechart.min.js" ,
+		"assets/plugins/placeholder/jquery.placeholder.min.js" ,
+		"assets/plugins/select2/js/select2.min.js" ,
+		"assets/plugins/modal/js/jquery.modalEffects.js" ,
+		"assets/js/onload.js"
+	];
+	loadJS(requireJS , "assets/js/pages/page-inbox-compose.js");
+</script>
+<style>
+    table > thead > tr > th {
+        background-color: #e4e5e6;
+        vertical-align: middle;
+        font-size: 15px;
+    }
+
+    .table tbody > tr {
+        border-bottom: 1px solid #e4e5e6
+    }
+
+    .table tbody > tr > td {
+        vertical-align: middle;
+    }
+
+    td > img {
+        border-radius: 50em;
+        height: 60%
+    }
+
+    table {
+        border: 1px solid #e4e5e6
+    }
+
+    .largeTable {
+        vertical-align: middle;
+        font-size: 20px;
+    }
+
+    tbody > tr:hover {
+        background-color: #f2f2f2;
+    }
+
+    .largeTable tr {
+        height: 50px;
+    }
+</style>
+
+<ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li class="active">Message Template</li>
+</ol>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2><i class="fa fa-tasks"></i>Templates</h2>
+            </div>
+            <div class="panel-body">
+                <button type="button" class="btn btn-primary" style="float:right" data-toggle="modal"
+                        data-dismiss="modal" data-target="#modal-create"><i class="fa fa-plus "></i> New Template
+                </button>
+                <br>
+                <div class="row">
+                    <div class="col-md-12" id="messageTemplateList">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2><i class="fa fa-tasks"></i>How to use Moustache templates?</h2>
+            </div>
+            <div class="panel-body">
+                <dl>
+                    <dt><i class="fa fa-arrow-right" style="width:20px;font-size:25px;color:#1985ac"></i><a hrep="#"
+                                                                                                            style="font-size:25px;">
+                        Lorem ipsum dolor sit amet?</a></dt>
+                    <dt><i class="fa fa-arrow-right" style="width:20px;font-size:25px;color:#1985ac"></i><a hrep="#"
+                                                                                                            style="font-size:25px;">
+                        Lorem ipsum dolor sit amet?</a></dt>
+                    <dt><i class="fa fa-arrow-right" style="width:20px;font-size:25px;color:#1985ac"></i><a hrep="#"
+                                                                                                            style="font-size:25px;">
+                        Lorem ipsum dolor sit amet?</a></dt>
+                    <dt><i class="fa fa-arrow-right" style="width:20px;font-size:25px;color:#1985ac"></i><a hrep="#"
+                                                                                                            style="font-size:25px;">
+                        Lorem ipsum dolor sit amet?</a></dt>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal modal-primary fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="closeEdit">&times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel1">Edit Template
+                    <content id="messName"></content>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="ccmonth">Select Template</label>
+                            <select class="form-control" id="selectTemplateEdit">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="ccmonth">Add Field</label>
+                            <select class="form-control" id="addField_edit">
+                                <option value="none">None</option>
+                                <option value="FirstCurrentCompanyName">First Current Company Name</option>
+                                <option value="FirstName">First Name</option>
+                                <option value="FirstNameFix">First Name Fix</option>
+                                <option value="TitleIfApplicable">Title if applicable</option>
+                                <option value="Country.State.City">Country, State, City</option>
+                                <option value="SharedGroups-NamesOfTop3">Shared Groups-Names of top3</option>
+                                <option value="NoOfSharedGroups">No of shared groups</option>
+                                <option value="MutualContacts-NameOfTop3">Mutual Contacts - Names of top 3</option>
+                                <option value="NoOfMutualContacts">No of mutual contacts</option>
+                                <option value="CurrentTitle">Current Title</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="ccmonth">&nbsp;</label>
+                            <button type="button" class="btn btn-info" id="add_exText_edit"><i class="fa fa-edit"></i>Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <textarea id="textarea_message_edit" name="textarea_message_edit" rows="9" class="form-control"
+                                  placeholder="Content.."
+                                  style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 194px;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="updateTemplateBtn" name="updateTemplateBtn"><i
+                        class="fa fa-copy"></i> Update Templates
+                </button>
+                <button type="button" class="btn btn-danger" id="cancelUpdateTemplateBtn"
+                        name="cancelUpdateTemplateBtn"><i class="fa fa-delete"></i> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-primary fade" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Add Actions</h4>
+            </div>
+            <div class="modal-body">
+                <h4>Are you sure you want delete "
+                    <content id="deleteData"></content>
+                    " message template?
+                </h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="deleteTemplateBtn" name="deleteTemplateBtn"> Delete
+                </button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"> Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-primary fade" id="modal-create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" id="closeCreate" aria-hidden="true">&times;
+                </button>
+                <h4 class="modal-title">Create New Template</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="ccmonth">Select Template</label>
+                            <select class="form-control" id="selectTemplateCreate">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label class="control-label" for="date01">Template Name</label>
+                            <div class="input-group">
+                                <input type="text" id="templateNameCreate" name="templateNameCreate"
+                                       class="form-control" placeholder="Input Template Name..">
+                                <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="ccmonth">Add Field</label>
+                            <select class="form-control" id="addField_create">
+                                <option value="none">None</option>
+                                <option value="FirstCurrentCompanyName">First Current Company Name</option>
+                                <option value="FirstName">First Name</option>
+                                <option value="FirstNameFix">First Name Fix</option>
+                                <option value="TitleIfApplicable">Title if applicable</option>
+                                <option value="Country.State.City">Country, State, City</option>
+                                <option value="SharedGroups-NamesOfTop3">Shared Groups-Names of top3</option>
+                                <option value="NoOfSharedGroups">No of shared groups</option>
+                                <option value="MutualContacts-NameOfTop3">Mutual Contacts - Names of top 3</option>
+                                <option value="NoOfMutualContacts">No of mutual contacts</option>
+                                <option value="CurrentTitle">Current Title</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="ccmonth">&nbsp;</label>
+                            <button type="button" class="btn btn-info" id="add_exText_create"><i class="fa fa-edit"></i>Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <textarea id="textarea_message_create" name="textarea_message_create" rows="9"
+                                  class="form-control" placeholder="Content.."
+                                  style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 194px;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="saveTemplateBtn" name="saveTemplateBtn"><i
+                        class="fa fa-plus"></i> Add Template
+                </button>
+                <button type="button" class="btn btn-danger" id="cancelSaveTemplateBtn" name="cancelSaveTemplateBtn"><i
+                        class="fa fa-delete"></i> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script src="assets/js/pages/database_messageTemplates.js"></script>
+<script src="assets/js/pages/messageTemplates_pageOper.js"></script>
+

@@ -1,0 +1,505 @@
+<script>
+    loadCSS("assets/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css");
+
+    var requireJS = [
+        "assets/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js",
+        "assets/plugins/sparkline/jquery.sparkline.min.js",
+        "assets/plugins/autosize/jquery.autosize.min.js",
+        "assets/plugins/easypiechart/js/jquery.easypiechart.min.js",
+        "assets/plugins/placeholder/jquery.placeholder.min.js"
+    ];
+    var mainTag = document.getElementsByClassName("main")[0];
+    var footerTag = document.getElementsByTagName("footer")[0];
+    mainTag.style.paddingRight = "20px";
+    footerTag.style.paddingRight = "20px";
+</script>
+<style>
+    table>thead>tr>th {
+        background-color: #e4e5e6;
+        vertical-align: middle;
+        font-size: 15px;
+    }
+    
+    .cellStyleName {
+        font-weight: bold;
+    }
+    
+    .table tbody>tr {
+        border-bottom: 1px solid #e4e5e6
+    }
+    
+    .table tbody>tr>td {
+        vertical-align: middle;
+    }
+    
+    td>img {
+        border-radius: 50em;
+        height: 60%
+    }
+    
+    table {
+        border: 1px solid #e4e5e6
+    }
+    
+    .fixedLength {
+        height: 400px;
+        overflow-y: scroll;
+    }
+    
+    .fixedLength1 {
+        height: 225px;
+        overflow-y: scroll;
+    }
+    
+    .borderExist {
+        border: 1px solid #e4e5e6;
+        padding: 10px 10px 10px 10px;
+    }
+</style>
+
+<ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li class="active">Invitations</li>
+</ol>
+<h2>By for each user you invite, you get one month free. </h2>
+
+<div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="info-box info">
+            <i class="fa fa-gift"></i>
+            <div class="count">4</div>
+            <div class="title">Free Service</div>
+            <div class="desc">Number of Months Free</div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="info-box success">
+            <i class="fa fa-check"></i>
+            <div class="count">21</div>
+            <div class="title">Invitation Information</div>
+            <div class="desc">Number of accepted Invitations</div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2><i class="fa fa-tasks"></i>Invite people</h2>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="borderExist">
+                            <h2><i class="icon-paper-plane"></i> Invite by email</h2>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                        <input type="email" id="email" name="email" class="form-control" placeholder="Email">
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-3"><i class="fa fa-envelope"></i> Send Invite</button>
+                            </div>
+                            <h3>You can enter multiple emails by separating them with commas</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <br>
+                        <div class="borderExist">
+                            <h2>My LinkedIn Contacts</h2>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+							                            <button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
+							                            </span>
+                                        <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-4"><i class="fa fa-envelope"></i> Invite All Contacts</button>
+                            </div>
+                            <div class="fixedLength1">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <img src="assets/img/avatar.jpg" />
+                                            </td>
+                                            <td>
+                                                <div class="cellStyleName">
+                                                    <a href="#">Yair Horowitz</a></div>
+                                                <div class="cellStyleName1">
+                                                    Actfront Media Group
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-2"><i class="fa fa-envelope"></i> Send Invite</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="assets/img/avatar.jpg" />
+                                            </td>
+                                            <td>
+                                                <div class="cellStyleName">
+                                                    <a href="#">Yair Horowitz</a></div>
+                                                <div class="cellStyleName1">
+                                                    Actfront Media Group
+                                                </div>
+                                            </td>
+                                            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-2"><i class="fa fa-envelope"></i> Send Invite</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="assets/img/avatar.jpg" />
+                                            </td>
+                                            <td>
+                                                <div class="cellStyleName">
+                                                    <a href="#">Yair Horowitz</a></div>
+                                                <div class="cellStyleName1">
+                                                    Actfront Media Group
+                                                </div>
+                                            </td>
+                                            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-2"><i class="fa fa-envelope"></i> Send Invite</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="assets/img/avatar.jpg" />
+                                            </td>
+                                            <td>
+                                                <div class="cellStyleName">
+                                                    <a href="#">Yair Horowitz</a></div>
+                                                <div class="cellStyleName1">
+                                                    Actfront Media Group
+                                                </div>
+                                            </td>
+                                            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-2"><i class="fa fa-envelope"></i> Send Invite</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="assets/img/avatar.jpg" />
+                                            </td>
+                                            <td>
+                                                <div class="cellStyleName">
+                                                    <a href="#">Yair Horowitz</a></div>
+                                                <div class="cellStyleName1">
+                                                    Actfront Media Group
+                                                </div>
+                                            </td>
+                                            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-2"><i class="fa fa-envelope"></i> Send Invite</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="assets/img/avatar.jpg" />
+                                            </td>
+                                            <td>
+                                                <div class="cellStyleName">
+                                                    <a href="#">Yair Horowitz</a></div>
+                                                <div class="cellStyleName1">
+                                                    Actfront Media Group
+                                                </div>
+                                            </td>
+                                            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-2"><i class="fa fa-envelope"></i> Send Invite</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2><i class="fa fa-tasks"></i>List people Accepted</h2>
+            </div>
+            <div class="panel-body fixedLength">
+                <table class="table">
+                    <tbody class="smallTable">
+                        <tr>
+                            <td>
+                                <img src="assets/img/avatar.jpg" />
+                            </td>
+                            <td>
+                                <div class="cellStyleName">
+                                    <a href="#">Yair Horowitz</a></div>
+                                <div class="cellStyleName1">
+                                    Actfront Media Group
+                                </div>
+                            </td>
+                            <td><i class="fa fa-check"></i> Accepted</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="assets/img/avatar.jpg" />
+                            </td>
+                            <td>
+                                <div class="cellStyleName">
+                                    <a href="#">Yair Horowitz</a></div>
+                                <div class="cellStyleName1">
+                                    Actfront Media Group
+                                </div>
+                            </td>
+                            <td><i class="fa fa-check"></i> Accepted</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="assets/img/avatar.jpg" />
+                            </td>
+                            <td>
+                                <div class="cellStyleName">
+                                    <a href="#">Yair Horowitz</a></div>
+                                <div class="cellStyleName1">
+                                    Actfront Media Group
+                                </div>
+                            </td>
+                            <td><i class="fa fa-check"></i> Accepted</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="assets/img/avatar.jpg" />
+                            </td>
+                            <td>
+                                <div class="cellStyleName">
+                                    <a href="#">Yair Horowitz</a></div>
+                                <div class="cellStyleName1">
+                                    Actfront Media Group
+                                </div>
+                            </td>
+                            <td><i class="fa fa-check"></i> Accepted</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="assets/img/avatar.jpg" />
+                            </td>
+                            <td>
+                                <div class="cellStyleName">
+                                    <a href="#">Yair Horowitz</a></div>
+                                <div class="cellStyleName1">
+                                    Actfront Media Group
+                                </div>
+                            </td>
+                            <td><i class="fa fa-check"></i> Accepted</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="assets/img/avatar.jpg" />
+                            </td>
+                            <td>
+                                <div class="cellStyleName">
+                                    <a href="#">Yair Horowitz</a></div>
+                                <div class="cellStyleName1">
+                                    Actfront Media Group
+                                </div>
+                            </td>
+                            <td><i class="fa fa-check"></i> Accepted</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--/col-->
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2><i class="fa fa-tasks"></i>List invitations outstanding</h2>
+            </div>
+            <div class="panel-body fixedLength">
+                <table class="table">
+                    <tbody class="smallTable">
+                        <tr>
+                            <td>
+                                <img src="assets/img/avatar.jpg" />
+                            </td>
+                            <td>
+                                <div class="cellStyleName">
+                                    <a href="#">Yair Horowitz</a></div>
+                                <div class="cellStyleName1">
+                                    Actfront Media Group
+                                </div>
+                            </td>
+                            <td>Sent</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="assets/img/avatar.jpg" />
+                            </td>
+                            <td>
+                                <div class="cellStyleName">
+                                    <a href="#">Yair Horowitz</a></div>
+                                <div class="cellStyleName1">
+                                    Actfront Media Group
+                                </div>
+                            </td>
+                            <td>Sent</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="assets/img/avatar.jpg" />
+                            </td>
+                            <td>
+                                <div class="cellStyleName">
+                                    <a href="#">Yair Horowitz</a></div>
+                                <div class="cellStyleName1">
+                                    Actfront Media Group
+                                </div>
+                            </td>
+                            <td>Sent</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="assets/img/avatar.jpg" />
+                            </td>
+                            <td>
+                                <div class="cellStyleName">
+                                    <a href="#">Yair Horowitz</a></div>
+                                <div class="cellStyleName1">
+                                    Actfront Media Group
+                                </div>
+                            </td>
+                            <td>Sent</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="assets/img/avatar.jpg" />
+                            </td>
+                            <td>
+                                <div class="cellStyleName">
+                                    <a href="#">Yair Horowitz</a></div>
+                                <div class="cellStyleName1">
+                                    Actfront Media Group
+                                </div>
+                            </td>
+                            <td>Sent</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="assets/img/avatar.jpg" />
+                            </td>
+                            <td>
+                                <div class="cellStyleName">
+                                    <a href="#">Yair Horowitz</a></div>
+                                <div class="cellStyleName1">
+                                    Actfront Media Group
+                                </div>
+                            </td>
+                            <td>Sent</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="assets/img/avatar.jpg" />
+                            </td>
+                            <td>
+                                <div class="cellStyleName">
+                                    <a href="#">Yair Horowitz</a></div>
+                                <div class="cellStyleName1">
+                                    Actfront Media Group
+                                </div>
+                            </td>
+                            <td>Sent</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--/col-->
+</div>
+<!--/row-->
+<div class="modal modal-primary fade" id="myModal-2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Send LinkedIn Invite</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control" placeholder="Content.." style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 194px;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-lg" data-dismiss="modal"><i class="fa fa-hand-o-right"></i> Invite</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-primary fade" id="myModal-3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Invite by Email</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="nf-password">First Name</label>
+                            <input type="text" id="inviteFirstName" name="inviteFirstName" class="form-control">
+                            <!-- <span class="help-block">Please input first name</span> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="nf-password">Subject</label>
+                            <input type="text" id="inviteSubject" name="inviteSubject" class="form-control">
+                            <!-- <span class="help-block">Please input first name</span> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="nf-password">Subject</label>
+                            <textarea id="inviteTextarea" name="textarea-input" rows="9" class="form-control" placeholder="Content.." style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 194px;"></textarea>
+                            <!-- <span class="help-block">Please input first name</span> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-lg" data-dismiss="modal"><i class="fa fa-hand-o-right"></i> Send Invite</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-primary fade" id="myModal-4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel"> Invite All Contacts</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control" placeholder="Content.." style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 194px;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-instagram text btn-lg"><i class="fa fa-picture-o"></i> Add Image Copy</button>
+                <button type="button" class="btn btn-success btn-lg" data-dismiss="modal"><i class="fa fa-hand-o-right"></i> Invite</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,570 @@
+<script>
+	loadCSS("assets/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css");
+	loadCSS("assets/plugins/modal/css/component.css");
+	loadCSS("assets/plugins/select2/css/select2.css");
+
+	var requireJS = [
+		"assets/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js" ,
+		"assets/plugins/datatables/js/jquery.dataTables.min.js" ,
+		"assets/plugins/datatables/js/dataTables.bootstrap.min.js" ,
+		"assets/plugins/modal/js/jquery.modalEffects.js" ,
+		"assets/js/onload.js" ,
+		"assets/plugins/select2/js/select2.js" ,
+		"assets/plugins/nestable/jquery.nestable.min.js"
+	];
+	loadJS(requireJS , "assets/js/pages/automation.js");
+	loadJS(requireJS , "assets/js/pages/ui-modals.js");
+	loadJS(requireJS , "assets/js/pages/ui-nestable-list.js");
+</script>
+<style>
+    table > thead > tr > th {
+        background-color: #e4e5e6;
+        vertical-align: middle;
+        font-size: 15px;
+    }
+
+    .table tbody > tr {
+        border-bottom: 1px solid #e4e5e6
+    }
+
+    .table tbody > tr > td {
+        vertical-align: middle;
+    }
+
+    td > img {
+        border-radius: 50em;
+        height: 60%
+    }
+
+    table {
+        border: 1px solid #e4e5e6
+    }
+
+    .largeTable {
+        vertical-align: middle;
+        font-size: 15px;
+    }
+
+    tbody :hover {
+        background-color: #f2f2f2;
+    }
+
+    .largeTable tr {
+        height: 50px;
+    }
+
+    .fa.fa-edit:hover {
+        background-color: #5bc0de;
+    }
+
+    .fa.fa-trash-o:hover {
+        background-color: #d9534f;
+    }
+</style>
+
+<ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li class="active">Automation</li>
+</ol>
+
+<div id="main-Content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2><i class="fa fa-tasks"></i>Automation</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-10"></div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-primary btn-block" id="openBlankEditBtn"><i
+                                    class="fa fa-plus "></i> Add Schedule
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" id="firstAutomationTable">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="editCampaigns" style="display:none;">
+    <input type="hidden" id="automationId">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2><i class="fa fa-tasks"></i>Automation</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input type="text" id="campaigntext" name="campaigntext" class="form-control"
+                                           placeholder="Enter Automation Name...">
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-primary btn-block" id="automationSaveBtn">
+                                        Save
+                                    </button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-primary btn-block" id="backAutomation"> Back
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <!--<button type="button" class="btn btn-default btn-block" data-dismiss="modal"><i-->
+                                    <!--class="fa fa-copy"></i> Copy-->
+                                    <!--</button>-->
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
+                                            data-dismiss="modal" id="addActionBtn" data-target="#modal-edit-action"><i
+                                            class="fa fa-plus"></i> Add Action
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="dd nestable3">
+                            <ol class="dd-list" id="showTriggersDiv">
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-primary fade" id="modal-delete-action" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Delete Actions</h4>
+            </div>
+            <div class="modal-body">
+                <h4>Are you sure you want delete this action?</h4>
+            </div>
+            <div class="modal-footer">np
+                <input type="hidden" id="deleteActionModalTriggerId">
+                <input type="hidden" id="deleteActionModalActionId">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="deleteActionBtn"
+                        name="deleteActionBtn"> Delete
+                </button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"> Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-primary fade" id="modal-edit-action" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel1">Add Action</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        <label for="ccmonth">Add Actions:</label>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <select class="form-control" id="addActionSelect">
+                                    <!-- <option value="0">None</option> -->
+                                    <option value="0">Visit Profile</option>
+                                    <option value="1">Send Message</option>
+                                    <option value="2">Send Connection Request</option>
+                                    <option value="3">Send Recommendation Request</option>
+                                    <option value="4">Add Tag</option>
+                                    <option hidden value="5">Transfer to a new campaign</option>
+                                    <option hidden value="6">Accept Connection Request</option>
+                                    <option value="7">Withdraw Connection Request</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tagContent">
+                </div>
+                <br>
+                <div id="conditionSelectDiv" style="display:none">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="nf-password">Delay Time</label>
+                                <input type="number" value="0" id="delayTimeNum" name="delayTimeNum"
+                                       class="form-control"
+                                       placeholder="Delay time.." min="0" max="9">
+                                <span class="help-block">Please enter delay Time</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="ccmonth">&nbsp;</label>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <select class="form-control" id="delayTimeSelect">
+                                        <option value="Hour(s)" selected>Hour(s)</option>
+                                        <option value="Minute(s)">Minute(s)</option>
+                                        <option value="Day(s)">Day(s)</option>
+                                        <option value="Week(s)">Week(s)</option>
+                                        <option value="Month(s)">Month(s)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="ccmonth">Apply this to:</label>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <select class="form-control" id="conditionSelect">
+                                        <!-- <option value="-1">None</option> -->
+                                        <option value="0">
+                                            Everyone
+                                        </option>
+                                        <option value="1">Visited my profile</option>
+                                        <option value="2">Accepted my Connection Request</option>
+                                        <option value="3">Endorsed Me</option>
+                                        <option value="4">Sent a connection request to me</option>
+                                        <option value="5">Sent a message to me</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="updateActionModalTriggerId">
+                <input type="hidden" id="updateActionModalActionId">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="triggerSaveBtn"><i
+                        class="fa fa-copy"></i> Save
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-primary fade" id="modal-delete-automation" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Delete Automation</h4>
+            </div>
+            <div class="modal-body">
+                <h1>Are you sure you want delete this automation?</h1>
+                <input type="hidden" id="deleteAutomationName">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="deleteAutomation" name="deleteAutomation"> Delete
+                </button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"> Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="acceptConnectionRequest" style="display:none;">
+    <div class="row">
+        <div class="col-md-12">
+            <label for="ccmonth">Campaign</label>
+            <div class="row">
+                <div class="col-md-8">
+                    <select class="form-control" id="acceptConnectionRequestSelect">
+                        <option>Campaign 1</option>
+                        <option>Campaign 2</option>
+                        <option>Campaign 3</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="transferCampaign" style="display:none;">
+    <div class="row">
+        <div class="col-md-12">
+            <label for="ccmonth">Campaign</label>
+            <div class="row">
+                <div class="col-md-8">
+                    <select class="form-control" id="transferCampaignSelect">
+                        <option value="Campaign 1">Campaign 1</option>
+                        <option value="Campaign 2">Campaign 2</option>
+                        <option value="Campaign 3">Campaign 3</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="addTag" style="display:none;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="nf-password">Add Tag</label>
+                <select id="addTagSelect" style="width:100%" multiple>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="sendRecomRequest" style="display:none;">
+    <div class="row">
+        <div class="col-md-12">
+            <label for="ccmonth">Message</label>
+            <div class="row">
+                <div class="col-md-8">
+                    <select class="form-control" id="sendRecomRequestSelect" onchange="showMessageStyle(this);">
+                        <option value="selectFromTemplate">Select from Template</option>
+                        <option value="customMessages">Custom Messages</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div id="sendRecomRequestSelectTemplate" style="display:none">
+                <div class="row">
+                    <div class="col-md-8">
+                        <select class="form-control" id="sendRecomRequestSelectList">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="sendRecomRequestSelectCustom" style="display:none">
+                <div class="row">
+                    <div class="col-md-8">
+                        <textarea id="sendRecomRequestSelectCM" name="textarea_message_edit" rows="9"
+                                  class="form-control" placeholder="Content.."
+                                  style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 194px;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="sendConnectionRequest" style="display:none;">
+    <div class="row">
+        <div class="col-md-12">
+            <label for="ccmonth">Message</label>
+            <div class="row">
+
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <select class="form-control" id="sendConnectionRequestSelect" onchange="showMessageStyle(this);">
+                        <option value="selectFromTemplate">Select from Template</option>
+                        <option value="customMessages">Custom Messages</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div id="sendConnectionRequestSelectTemplate" style="display:none">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <select class="form-control" id="sendConnectionRequestSelectList">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-8">
+                        <textarea id="sendConnectionRequestSelectST" name="textarea_message_edit" rows="9"
+                                  class="form-control"
+                                  placeholder="Content.."
+                                  style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 194px;">
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+            <div id="sendConnectionRequestSelectCustom" style="display:none">
+                <div class="row">
+                    <div class="col-md-8">
+                        <textarea id="sendConnectionRequestSelectCM" name="textarea_message_edit" rows="9"
+                                  class="form-control" placeholder="Content.."
+                                  style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 194px;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="sendMessage" style="display:none;">
+    <div class="row">
+        <div class="col-md-12">
+            <label for="ccmonth">Message</label>
+            <div class="row">
+                <div class="col-md-8">
+                    <select class="form-control" id="sendMessageSelect" onchange="showMessageStyle(this);">
+                        <option value="selectFromTemplate">Select from Template</option>
+                        <option value="customMessages">Custom Messages</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-5">
+                    <label for="ccmonth">Add Field</label>
+                    <select class="form-control" id="addField_create">
+                        <option selected value="none">None</option>
+                        <option value="FirstCurrentCompanyName">First Current Company Name</option>
+                        <option value="FirstName">First Name</option>
+                        <option value="FirstNameFix">First Name Fix</option>
+                        <option value="TitleIfApplicable">Title if applicable</option>
+                        <option value="Country.State.City">Country, State, City</option>
+                        <option value="SharedGroups-NamesOfTop3">Shared Groups-Names of top3</option>
+                        <option value="NoOfSharedGroups">No of shared groups</option>
+                        <option value="MutualContacts-NameOfTop3">Mutual Contacts - Names of top 3</option>
+                        <option value="NoOfMutualContacts">No of mutual contacts</option>
+                        <option value="CurrentTitle">Current Title</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="ccmonth">&nbsp;</label>
+                        <button type="button" class="btn btn-info"
+                                id="add_exText_create1" onclick="addCustomFields()"><i class="fa fa-edit"></i>Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div id="sendMessageSelectTemplate" style="display:none">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="ccmonth">Select Template</label>
+                                <select class="form-control" id="sendMessageSelectList">
+                                </select>
+                            </div>
+                        </div>
+
+                        <br>
+                        <textarea id="sendMessageSelectST" name="sendMessageSelectST" rows="9"
+                                  class="form-control"
+                                  placeholder="Content.."
+                                  style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 194px;"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div id="sendMessageSelectCustom" style="display:none">
+                <div class="row">
+                    <div class="col-md-8">
+                        <textarea id="sendMessageSelectCM" name="sendMessageSelectCM" rows="9" class="form-control"
+                                  placeholder="Content.."
+                                  style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 194px;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="visitProfile" style="display:none;">
+    <div class="row">
+        <div class="col-md-12">
+            <label class="custom-checkbox-item pull-left">
+                <input class="custom-checkbox" type="checkbox" name="individual" id="visitProfileCheck">
+                <span class="custom-checkbox-mark" style="border:1px solid black;background-color:white;"></span>
+                Endorse if connected
+            </label>
+        </div>
+    </div>
+</div>
+
+<div id="withdrawConnectionRequest" style="display:none;">
+    <div class="row">
+        <div class="col-md-12">
+            <label class="custom-checkbox-item pull-left">
+                <input class="custom-checkbox" type="checkbox" name="individual" id="withdrawConnectionRequestCheck">
+                <span class="custom-checkbox-mark" style="border:1px solid black;background-color:white;"></span>
+                Endorse if connected
+            </label>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/pages/database_automation.js"></script>
+<script src="assets/js/pages/automation_pageOper.js"></script>
+
+<script type="text/javascript">
+
+	function addCustomFields () {
+		var add_exText_create = document.getElementById('add_exText_create');
+			let textarea = $('#sendMessageSelectST')
+			let textarea1 = $('#sendMessageSelectCM')
+			console.log('send Message');
+			if ( $('#addField_create').value != 'none' ) {
+				var tmp = '{{Contact.' + addField_create.value + '}}';
+				var cursorPos = textarea.prop('selectionStart');
+				var cursorPos1 = textarea1.prop('selectionStart');
+				var v = textarea.val();
+				var v1 = textarea1.val();
+				var textBefore = v.substring(0 , cursorPos);
+				var textBefore1 = v1.substring(0 , cursorPos);
+				var textAfter = v.substring(cursorPos , v.length);
+				var textAfter1 = v1.substring(cursorPos1 , v.length);
+				textarea.val(textBefore + tmp + textAfter);
+				textarea1.val(textBefore1 + tmp + textAfter1);
+			}
+	}
+	// function addTextToTemplate () {
+	// 	console.log(addField_create.options[ addField_create.selectedIndex ].value);
+	// 	console.log(addField_create.value);
+	// 	if ( $("#addField_create option:selected").text() !== 'none' ) {
+	// 		var tmp = '{{Contact.' + $("#addField_create option:selected").text() + '}}';
+	//
+	// 		var cursorPos = $('#sendMessageSelectST').prop('selectionStart');
+	// 		var v = $('#sendMessageSelectST').val();
+	// 		var textBefore = v.substring(0 , cursorPos);
+	// 		var textAfter = v.substring(cursorPos , v.length);
+	// 		$('#sendMessageSelectST').val(textBefore + tmp + textAfter);
+	// 	}
+	// }
+
+	// function addTextToTemplate2 () {
+	// 	if ( $("#addField_create2 option:selected").text() !== 'none' ) {
+	// 		var tmp = '{{Contact.' + $("#addField_create2 option:selected").text() + '}}';
+	//
+	// 		var cursorPos = $('#sendConnectionRequestSelectST').prop('selectionStart');
+	// 		var v = $('#sendConnectionRequestSelectST').val();
+	// 		var textBefore = v.substring(0 , cursorPos);
+	// 		var textAfter = v.substring(cursorPos , v.length);
+	// 		$('#sendConnectionRequestSelectST').val(textBefore + tmp + textAfter);
+	// 	}
+	// }
+
+	$('#nav-sidebar-id').click(function( e ) {
+		if ( TRIGGER_ACTION_LENGTH ) {
+			e.stopImmediatePropagation();
+			alert('Please save automation before leaving this page!');
+		}
+	});
+</script>

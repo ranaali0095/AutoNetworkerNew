@@ -1,0 +1,189 @@
+<script>
+	loadCSS("assets/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css");
+	loadCSS("assets/plugins/select2/css/select2.css");
+	loadCSS("assets/plugins/select2/css/select2-bootstrap.css");
+	loadCSS("assets/plugins/daterangepicker/css/daterangepicker-bs3.css");
+
+	var requireJS = [
+		"assets/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js" ,
+		"assets/plugins/select2/js/select2.min.js" ,
+		"assets/plugins/autosize/jquery.autosize.min.js" ,
+		"assets/plugins/placeholder/jquery.placeholder.min.js" ,
+		"assets/plugins/maskedinput/jquery.maskedinput.min.js" ,
+		"assets/plugins/inputlimiter/js/jquery.inputlimiter.1.3.1.min.js" ,
+		"assets/plugins/datepicker/js/bootstrap-datepicker.min.js" ,
+		"assets/plugins/timepicker/js/bootstrap-timepicker.min.js" ,
+		"assets/plugins/moment/moment.min.js" ,
+		"assets/plugins/daterangepicker/js/daterangepicker.min.js" ,
+		"assets/plugins/hotkeys/jquery.hotkeys.min.js" ,
+		"assets/plugins/wysiwyg/bootstrap-wysiwyg.min.js" ,
+		"assets/plugins/colorpicker/js/bootstrap-colorpicker.min.js" ,
+		"assets/js/onload.js"
+	];
+	loadJS(requireJS , "assets/js/pages/account.js");
+</script>
+<!--/.row-->
+<ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li class="active">Account</li>
+</ol>
+<div class="row">
+    <div class="col-sm-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2>Account Management</h2>
+            </div>
+            <webview id="foo" src="https://testingco.recurly.com/subscribe/single" preload="salesNavigator.js"
+                     autosize="on" minwidth="600"
+                     minheight="800" style="width:100%;height:1000px">
+            </webview>
+            <div class="panel-body">
+                <br>
+
+                <div class="row">
+
+                    <!--<form role="form">-->
+                    <!--<div class="col-sm-6">-->
+                    <!--<div class="row">-->
+                    <!--<div class="col-sm-12">-->
+                    <!--<h1>Login Information</h1>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label class="control-label" for="date01">Email</label>-->
+                    <!--<div class="input-group">-->
+                    <!--<input type="email" id="account_email1" name="account_email" class="form-control">-->
+                    <!--<span class="input-group-addon"><i class="fa fa-envelope"></i></span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="form-group">-->
+                    <!--<label class="control-label" for="date01">Password</label>-->
+                    <!--<div class="input-group">-->
+                    <!--<input type="password" id="account_password1" name="account_password"-->
+                    <!--class="form-control">-->
+                    <!--<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group text-center">-->
+                    <!--<button type="button" class="btn btn-primary" id="account_save_btn1"-->
+                    <!--onclick="addNewAccount();"><i class="fa fa-save "></i> Save Account-->
+                    <!--</button>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-sm-6">-->
+                    <!--<div class="row">-->
+                    <!--<div class="col-sm-12">-->
+                    <!--<h1>Billing Details</h1>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label class="control-label" for="date01">Name</label>-->
+                    <!--<div class="input-group">-->
+                    <!--<input type="text" id="account_bilName" name="account_bilName" class="form-control">-->
+                    <!--<span class="input-group-addon"><i class="fa fa-user"></i></span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label class="control-label" for="date01">Last Name</label>-->
+                    <!--<div class="input-group">-->
+                    <!--<input type="text" id="account_bilLastName" name="account_bilLastName"-->
+                    <!--class="form-control">-->
+                    <!--<span class="input-group-addon"><i class="fa fa-user"></i></span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label class="control-label" for="date01">Country</label>-->
+                    <!--<div class="input-group">-->
+                    <!--<input type="text" id="account_countryName" name="account_countryName"-->
+                    <!--class="form-control">-->
+                    <!--<span class="input-group-addon"><i class="fa fa-globe"></i></span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label class="control-label" for="date01">Mobile Number</label>-->
+                    <!--<div class="input-group">-->
+                    <!--<input type="text" id="account_mobNumber" name="account_mobNumber"-->
+                    <!--class="form-control">-->
+                    <!--<span class="input-group-addon"><i class="fa fa-mobile-phone"></i></span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label class="control-label" for="date01">Email</label>-->
+                    <!--<div class="input-group">-->
+                    <!--<input type="text" id="account_emailAdd" name="account_emailAdd"-->
+                    <!--class="form-control">-->
+                    <!--<span class="input-group-addon"><i class="fa fa-envelope"></i></span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</form>-->
+                    <!--<form>-->
+                    <!--<input type="text" data-recurly="first_name">-->
+                    <!--<input type="text" data-recurly="last_name">-->
+                    <!--<div data-recurly="number"></div>-->
+                    <!--<div data-recurly="month"></div>-->
+                    <!--<div data-recurly="year"></div>-->
+                    <!--<div data-recurly="cvv"></div>-->
+                    <!--<input type="hidden" name="recurly-token" data-recurly="token">-->
+                    <!--<button>submit</button>-->
+                    <!--</form>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="info-box info">
+                    <i class="fa fa-calendar"></i>
+                    <div class="count">17/25/07</div>
+                    <div class="title">Scehdule Information</div>
+                    <div class="desc">You can active next billing method at this date.</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="info-box success">
+                    <i class="fa fa-gift"></i>
+                    <div class="count">4</div>
+                    <div class="title">Months</div>
+                    <div class="desc">You can use this service for 4 months free.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="assets/js/pages/database_account.js"></script>
+<script src="assets/js/pages/account_pageOper.js"></script>
+<!--<script src="https://js.recurly.com/v4/recurly.js"></script>-->
+
+<script type="text/javascript">
+	function addNewAccount () {
+
+		var account_email = document.getElementById('account_email');
+		var account_password = document.getElementById('account_password');
+
+		if ( (validateInputBox(account_email)) &&
+			(validateInputBox(account_password)) ) {
+			var doc = {
+				_id: constants.DOC_TYPE.USERINFO ,
+				user_email: account_email.value ,
+				account_password: account_password.value
+			};
+
+			helperIndex.cleanDatabase();
+			helperIndex.saveAccount();
+
+//			document.getElementById("account_save_btn").disabled = true;
+			helperIndex.afterSucessfullLogin(doc);
+
+		} else {
+//			alert('Please Complete Profile');
+			return;
+		}
+
+	}
+
+</script>

@@ -1,0 +1,67 @@
+{
+  "name": "AutoNetworker(0.0.1)",
+  "version": "0.0.5",
+  "description": "Auto Networker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron . --diable-gpu",
+    "pack": "build --dir",
+    "publish": "build -p always",
+    "postinstall": "electron-builder install-app-deps",
+    "package": "asar pack autoNetworker-win32-x64/resources/app autoNetworker-win32-x64/resources/app.asar",
+    "build": "electron-packager . AutoNetworker --out=dist --asar --overwrite --all",
+    "dist": "build"
+  },
+  "build": {
+    "appId": "com.auto.network.project",
+    "productName": "AutoNetworker",
+    "asar": false,
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "http://updates.autonetworker.com/updates/"
+      }
+    ]
+  },
+  "repository": "autoNetworker",
+  "updater": {
+    "url": "http://updates.autonetworker.com/updates/"
+  },
+  "author": "James Flower",
+  "license": "ISC",
+  "devDependencies": {
+    "auto-launch": "^5.0.5",
+    "auto-updater": "^1.0.2",
+    "electron": "^1.8.1",
+    "electron-builder": "^19.49.2",
+    "electron-log": "^2.2.12",
+    "electron-packager": "^8.7.2",
+    "electron-rebuild": "^1.6.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-windows-installer": "^1.7.8",
+    "electron-winstaller": "^2.6.3",
+    "grunt-electron-installer": "^2.1.0",
+    "pouchdb": "^6.3.4"
+  },
+  "dependencies": {
+    "electron-download-tf": "^4.3.4",
+    "electron-packager": "^8.7.2",
+    "electron-settings": "^3.1.4",
+    "electron-tabs": "^0.8.0",
+    "electron-updater": "^2.17.6",
+    "electron-window-state": "^4.1.1",
+    "moment": "^2.19.4",
+    "mustache": "^2.3.0",
+    "nightmare": "^2.10.0",
+    "nightmare-wait-for-url": "0.0.2",
+    "node-recurly": "git+https://github.com/cgerrior/node-recurly.git",
+    "recurly-js": "^2.5.0"
+  }
+}

@@ -1,0 +1,53 @@
+<script>
+    loadCSS("assets/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css");
+
+    var requireJS = [
+        "assets/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js",
+        "assets/plugins/sparkline/jquery.sparkline.min.js",
+        "assets/plugins/autosize/jquery.autosize.min.js",
+        "assets/plugins/easypiechart/js/jquery.easypiechart.min.js",
+        "assets/plugins/placeholder/jquery.placeholder.min.js",
+        "assets/js/onload.js"
+    ];
+</script>
+
+<ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li class="active">Utilies</li>
+</ol>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2><i class="fa fa-tasks"></i>Utilies</h2>
+            </div>
+            <div class="panel-body">
+                <!-- <button type="button" class="btn btn-danger" onclick="db.cleanDatabase()" data-toggle="modal" data-target=".waiting-modal"><i class="fa fa-trash-o"></i> Clean Database</button> -->
+                <button onclick="db.cleanDatabase()" type="button" class="btn btn-danger" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#waiting-modal"><i class="fa fa-trash-o"></i> Clean Database</button>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+
+
+<div id="waiting-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Info</h5>
+            </div>
+            <div class="modal-body"></div>
+                <div class="alert alert-warning" role="alert" style="margin: 0 2em 2em 2em;">
+                    <strong>Waiting!</strong> Database is cleaning.
+                </div>
+                <div class="alert alert-success" role="alert" style="margin: 0 2em 2em 2em; display:none;">
+                    <strong>Done!</strong> Database is clean.
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    db = require('./assets/js/helpers/helper-db.js')
+</script>

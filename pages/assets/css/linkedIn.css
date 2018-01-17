@@ -1,0 +1,167 @@
+.search-result__image,
+.search-result--provider .search-result__image,
+.search-result__image {
+    width: 56px;
+    height: 56px;
+    background-clip: content-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-sizing: border-box;
+    z-index: 0;
+    overflow: hidden
+}
+.search-result__image-wrapper {
+    margin: 12px 0 12px 24px;
+    padding-right: 16px
+}
+.search-result--person .search-result__image-wrapper,
+.search-result--provider .search-result__image-wrapper {
+    margin: 16px 0 16px 24px
+}
+.search-result__image {
+    border: 4px solid transparent;
+    border-radius: 6px;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+.search-result--person .search-result__image,
+.search-result--provider .search-result__image {
+    border: 1px solid transparent;
+    border-radius: 49.9%;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0;
+    background-image: radial-gradient(50% 50% ellipse, #b3b6b9 0, #b3b6b9 95%, #fff 100%)
+}
+.search-result--past-employee .search-result__image {
+    -webkit-animation: past-employee 3s;
+    animation: past-employee 3s;
+    -webkit-animation-iteration-count: 2;
+    animation-iteration-count: 2
+}
+.search-result--past-employee:hover .search-result__image {
+    -webkit-animation: past-employee 2s infinite;
+    animation: past-employee 2s infinite
+}
+.search-result__image {
+    background-color: #b3b6b9
+}
+.search-result__wrapper.search-result__wrapper {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    text-decoration: none
+}
+.search-result--person .actor-name:hover,
+.search-result--provider .actor-name:hover,
+.search-result__title:hover {
+    text-decoration: underline
+}
+.search-result--person .search-adchoices-hovercard__card:hover,
+.search-adchoices-hovercard__trigger:hover,
+.search-query-suggestions__link.search-query-suggestions__link:hover {
+    cursor: pointer
+}
+.search-result--person .actor-name-with-distance,
+.search-result--provider .actor-name-with-distance {
+    line-height: 20px;
+    display: inline
+}
+.search-result--person .actor-name,
+.search-result--provider .actor-name {
+    color: #0084bf
+}
+.search-result--person .search-result__result-link.search-result__result-link {
+    text-decoration: none
+}
+.search-result--person .search-result__subline-level-1,
+.search-result__title {
+    /*! autoprefixer: off */
+    
+    display: block;
+    display: -webkit-box;
+    margin: 0 auto;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 40px;
+    white-space: normal
+}
+.search-result--person .search-result-card__image img,
+.search-result--provider .search-result-card__image img,
+.search-result-card__image img {
+    max-height: 100%;
+    max-width: 100%
+}
+.search-result--person .search-result__subline-level-1,
+.search-result__title {
+    /*! autoprefixer: off */
+    
+    display: block;
+    display: -webkit-box;
+    margin: 0 auto;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 40px;
+    white-space: normal
+}
+.search-result--person .search-result-card__image img,
+.search-result--provider .search-result-card__image img,
+.search-result-card__image img {
+    max-height: 100%;
+    max-width: 100%
+}
+.search-result--person .search-result-card__image,
+.search-result--provider .search-result-card__image {
+    width: 72px;
+    height: 72px;
+    box-sizing: border-box;
+    background-clip: content-box;
+    border: 1px solid transparent;
+    border-radius: 49.9%;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0;
+    overflow: hidden;
+    z-index: 0;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    background-image: radial-gradient(50% 50% ellipse, #b3b6b9 0, #b3b6b9 95%, #fff 100%)
+}
+.lazy-image{
+    transition:opacity .5s;
+    opacity:0;
+    width: 66px;
+}
+.lazy-image.loaded{
+    opacity:1
+}

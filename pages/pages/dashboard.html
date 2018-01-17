@@ -1,0 +1,845 @@
+<script>
+    loadCSS("assets/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css");
+
+    var requireJS = ["assets/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js", "assets/js/onload.js"];
+
+    loadJS(requireJS, "assets/js/pages/ui-sliders-progress.js");
+</script>
+<style>
+    table>thead>tr>th {
+        background-color: #e4e5e6;
+        vertical-align: middle;
+        font-size: 15px;
+    }
+    
+    .cellStyleName {
+        font-weight: bold;
+    }
+    
+    .table tbody>tr {
+        border-bottom: 1px solid #e4e5e6
+    }
+    
+    .table tbody>tr>td {
+        vertical-align: middle;
+    }
+    
+    td>img {
+        border-radius: 50em;
+        height: 60%
+    }
+    
+    table {
+        border: 1px solid #e4e5e6
+    }
+    
+    .largeTable {
+        vertical-align: middle;
+    }
+    
+    .largeTable tr {
+        height: 50px;
+    }
+    
+    .largeTable tbody>tr :hover {
+        background-color: #f2f2f2;
+    }
+    
+    .smallTable :hover {
+        background-color: #f2f2f2;
+    }
+</style>
+<ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li class="active">Dashboard</li>
+</ol>
+
+
+<div class="row">
+    <!--/row-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2><i class="fa fa-tasks"></i>Connection</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <blockquote style="border-color:#63c2de;padding:2px 15px;">
+                            <div style="color:grey;">New Connections Made</div>
+                            <div style="font-size:25px;color:black;">
+                                120
+                            </div>
+                        </blockquote>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="padding-left:25px;"><i class="fa fa-user"></i></th>
+                                    <th>User</th>
+                                    <th>Country</th>
+                                    <th>Lorem ipsum</th>
+                                    <th>Lorem ipsum</th>
+                                    <th>Connected</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img src="assets/img/avatar.jpg" />
+                                    </td>
+                                    <td>
+                                        <div class="cellStyleName">
+                                            <a href="#">Yair Horowitz</a></div>
+                                        <div class="cellStyleName1">
+                                            Actfront Media Group
+                                        </div>
+                                    </td>
+                                    <td>USA</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>3 days ago</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="assets/img/avatar.jpg" />
+                                    </td>
+                                    <td>
+                                        <div class="cellStyleName">
+                                            <a href="#">Justin M.Price</a></div>
+                                        <div class="cellStyleName1">
+                                            Actfront Media Group
+                                        </div>
+                                    </td>
+                                    <td>USA</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>3 days ago</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="assets/img/avatar.jpg" />
+                                    </td>
+                                    <td>
+                                        <div class="cellStyleName">
+                                            <a href="#">Jesse T.Souther</a></div>
+                                        <div class="cellStyleName1">
+                                            Actfront Media Group
+                                        </div>
+                                    </td>
+                                    <td>USA</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>3 days ago</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="assets/img/avatar.jpg" />
+                                    </td>
+                                    <td>
+                                        <div class="cellStyleName">
+                                            <a href="#">Yair Horowitz</a></div>
+                                        <div class="cellStyleName1">
+                                            Actfront Media Group
+                                        </div>
+                                    </td>
+                                    <td>USA</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>3 days ago</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="assets/img/avatar.jpg" />
+                                    </td>
+                                    <td>
+                                        <div class="cellStyleName">
+                                            <a href="#">Justin M.Price</a></div>
+                                        <div class="cellStyleName1">
+                                            Actfront Media Group
+                                        </div>
+                                    </td>
+                                    <td>USA</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>3 days ago</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="assets/img/avatar.jpg" />
+                                    </td>
+                                    <td>
+                                        <div class="cellStyleName">
+                                            <a href="#">Jesse T.Souther</a></div>
+                                        <div class="cellStyleName1">
+                                            Actfront Media Group
+                                        </div>
+                                    </td>
+                                    <td>USA</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>3 days ago</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--/col-->
+        </div>
+        <!--/col-->
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2><i class="fa fa-tasks"></i>Connection Requests</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-2">
+                        <blockquote style="border-color:#63c2de;padding:2px 15px;">
+                            <div style="color:grey;">sent</div>
+                            <div style="font-size:25px;color:black;">
+                                145
+                            </div>
+                        </blockquote>
+                    </div>
+                    <div class="col-md-2">
+                        <blockquote style="border-color:#f86c6b;padding:2px 15px;">
+                            <div style="color:grey;">Requested</div>
+                            <div style="font-size:25px;color:black;">
+                                120
+                            </div>
+                        </blockquote>
+                    </div>
+                    <div class="col-md-2">
+                        <blockquote style="border-color:#f8cb00;padding:2px 15px;">
+                            <div style="color:grey;">Withdrawn</div>
+                            <div style="font-size:25px;color:black;">
+                                25
+                            </div>
+                        </blockquote>
+                    </div>
+                    <div class="col-md-2">
+                        <blockquote style="border-color:#4dbd74;padding:2px 15px;">
+                            <div style="color:grey;">Incoming</div>
+                            <div style="font-size:25px;color:black;">
+                                12
+                            </div>
+                        </blockquote>
+                    </div>
+                    <div class="col-md-2">
+                        <blockquote style="border-color:#999999;padding:2px 15px;">
+                            <div style="color:grey;">Acceptance Rate</div>
+                            <div style="font-size:25px;color:black;">
+                                82%
+                            </div>
+                        </blockquote>
+                    </div>
+                    <div class="col-md-2">
+                        <blockquote style="border-color:#63c2de;padding:2px 15px;">
+                            <div style="color:grey;">Profile Visits</div>
+                            <div style="font-size:25px;color:black;">
+                                252
+                            </div>
+                        </blockquote>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="padding-left:25px;"><i class="fa fa-user"></i></th>
+                                    <th>User</th>
+                                    <th>Country</th>
+                                    <th>Lorem ipsum</th>
+                                    <th>Lorem ipsum</th>
+                                    <th>Connected</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img src="assets/img/avatar.jpg" />
+                                    </td>
+                                    <td>
+                                        <div class="cellStyleName">
+                                            <a href="#">Yair Horowitz</a></div>
+                                        <div class="cellStyleName1">
+                                            Actfront Media Group
+                                        </div>
+                                    </td>
+                                    <td>USA</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>3 days ago</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="assets/img/avatar.jpg" />
+                                    </td>
+                                    <td>
+                                        <div class="cellStyleName">
+                                            <a href="#">Justin M.Price</a></div>
+                                        <div class="cellStyleName1">
+                                            Actfront Media Group
+                                        </div>
+                                    </td>
+                                    <td>USA</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>3 days ago</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="assets/img/avatar.jpg" />
+                                    </td>
+                                    <td>
+                                        <div class="cellStyleName">
+                                            <a href="#">Jesse T.Souther</a></div>
+                                        <div class="cellStyleName1">
+                                            Actfront Media Group
+                                        </div>
+                                    </td>
+                                    <td>USA</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>3 days ago</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="assets/img/avatar.jpg" />
+                                    </td>
+                                    <td>
+                                        <div class="cellStyleName">
+                                            <a href="#">Yair Horowitz</a></div>
+                                        <div class="cellStyleName1">
+                                            Actfront Media Group
+                                        </div>
+                                    </td>
+                                    <td>USA</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>3 days ago</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="assets/img/avatar.jpg" />
+                                    </td>
+                                    <td>
+                                        <div class="cellStyleName">
+                                            <a href="#">Justin M.Price</a></div>
+                                        <div class="cellStyleName1">
+                                            Actfront Media Group
+                                        </div>
+                                    </td>
+                                    <td>USA</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>3 days ago</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="assets/img/avatar.jpg" />
+                                    </td>
+                                    <td>
+                                        <div class="cellStyleName">
+                                            <a href="#">Jesse T.Souther</a></div>
+                                        <div class="cellStyleName1">
+                                            Actfront Media Group
+                                        </div>
+                                    </td>
+                                    <td>USA</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>3 days ago</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2><i class="fa fa-tasks"></i>Automation</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <h3>Listed top 10</h3>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table ">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center;">No</th>
+                                    <th>Automation Name</th>
+                                    <th>ConnectionsMade</th>
+                                    <th>Links clicked</th>
+                                    <th>Replies</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align:center;">1</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>120 / 82%</td>
+                                    <td>14/ 48%</td>
+                                    <td>65/89%</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center;">2</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>120 / 82%</td>
+                                    <td>14/ 48%</td>
+                                    <td>65/89%</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center;">3</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>120 / 82%</td>
+                                    <td>14/ 48%</td>
+                                    <td>65/89%</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center;">4</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>120 / 82%</td>
+                                    <td>14/ 48%</td>
+                                    <td>65/89%</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center;">5</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>120 / 82%</td>
+                                    <td>14/ 48%</td>
+                                    <td>65/89%</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center;">6</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>120 / 82%</td>
+                                    <td>14/ 48%</td>
+                                    <td>65/89%</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center;">7</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>120 / 82%</td>
+                                    <td>14/ 48%</td>
+                                    <td>65/89%</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center;">8</td>
+                                    <td>Lorem ipsum dolor sit amet</td>
+                                    <td>120 / 82%</td>
+                                    <td>14/ 48%</td>
+                                    <td>65/89%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2><i class="fa fa-tasks"></i>Ten most recent profile visitors</h2>
+                    <div class="panel-actions">
+                        <img src="assets/img/u79.png" />
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <tbody class="smallTable">
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Yair Horowitz</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Justin M.Price</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Jesse T.Souther</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Yair Horowitz</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Justin M.Price</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Jesse T.Souther</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--/col-->
+
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2><i class="fa fa-tasks"></i>Ten most recent connections</h2>
+                    <div class="panel-actions">
+                        <img src="assets/img/u186.png" />
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <tbody class="smallTable">
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Yair Horowitz</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Justin M.Price</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Jesse T.Souther</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Yair Horowitz</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Justin M.Price</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Jesse T.Souther</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--/col-->
+    </div>
+    <!--/row-->
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2><i class="fa fa-tasks"></i>Ten most recent people that clicked on a link</h2>
+                    <div class="panel-actions">
+                        <img src="assets/img/u783.png" />
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <tbody class="smallTable">
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Yair Horowitz</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Justin M.Price</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Jesse T.Souther</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Yair Horowitz</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Justin M.Price</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Jesse T.Souther</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--/col-->
+
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2><i class="fa fa-tasks"></i>Ten most recent people that had an invitation withdrawn</h2>
+                    <div class="panel-actions">
+                        <img src="assets/img/u778.png" />
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <tbody class="smallTable">
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Yair Horowitz</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Justin M.Price</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Jesse T.Souther</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Yair Horowitz</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Justin M.Price</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/img/avatar.jpg" />
+                                </td>
+                                <td>
+                                    <div class="cellStyleName">
+                                        <a href="#">Jesse T.Souther</a></div>
+                                    <div class="cellStyleName1">
+                                        Actfront Media Group
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--/col-->
+    </div>
+    <!--/row-->
+</div>

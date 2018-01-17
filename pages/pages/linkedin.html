@@ -1,0 +1,836 @@
+<script>
+	loadCSS("assets/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css");
+	loadCSS("assets/plugins/select2/css/select2.css");
+	loadCSS("assets/plugins/daterangepicker/css/daterangepicker-bs3.css");
+	loadCSS("assets/plugins/datatables/css/dataTables.bootstrap.css");
+	loadCSS("assets/plugins/datatables/css/jquery.dataTables.css");
+	var requireJS = [
+		"assets/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js" ,
+		"assets/plugins/datatables/js/jquery.dataTables.min.js" ,
+		"assets/plugins/sparkline/jquery.sparkline.min.js" ,
+		"assets/plugins/autosize/jquery.autosize.min.js" ,
+		"assets/plugins/easypiechart/js/jquery.easypiechart.min.js" ,
+		"assets/plugins/placeholder/jquery.placeholder.min.js" ,
+		"assets/plugins/select2/js/select2.js" ,
+		"assets/plugins/datatables/js/dataTables.bootstrap.js" ,
+		"assets/plugins/maskedinput/jquery.maskedinput.min.js" ,
+		"assets/plugins/inputlimiter/js/jquery.inputlimiter.1.3.1.min.js" ,
+		"assets/plugins/datepicker/js/bootstrap-datepicker.min.js" ,
+		"assets/plugins/timepicker/js/bootstrap-timepicker.min.js" ,
+		"assets/plugins/moment/moment.min.js" ,
+		"assets/plugins/daterangepicker/js/daterangepicker.min.js" ,
+		"assets/plugins/hotkeys/jquery.hotkeys.min.js" ,
+		"assets/plugins/wysiwyg/bootstrap-wysiwyg.min.js" ,
+		"assets/plugins/colorpicker/js/bootstrap-colorpicker.min.js" ,
+		"assets/js/onload.js"
+	];
+
+	loadJS(requireJS , "assets/js/pages/table.js");
+	loadJS(requireJS , "assets/js/pages/page-inbox-compose.js");
+
+	loadJS(requireJS , "assets/js/pages/people.js");
+	loadJS(requireJS , "assets/js/pages/index.js");
+</script>
+
+<script src="../pages/assets/plugins/pace/pace.min.js">
+</script>
+<script src="../pages/assets/js/jquery.mmenu.min.js"></script>
+<script src="../pages/assets/plugins/jquery-cookie/jquery.cookie.min.js"></script>
+<script src="../pages/assets/js/demo.min.js"></script>
+<style>
+    .accordian-body {
+        background-color: #fafafa;
+    }
+</style>
+
+<div class="sidebar-left" id="match-content">
+    <div id="matchContent">
+        <h1>Visit Search Page or Group page to enable Actions</h1>
+    </div>
+    <div class="row">
+        <button class="col-md-4 col-md-offset-1 btn btn-sm btn-default" onclick="$('#people').click();">People</button>
+    </div>
+</div>
+
+<webview id="foo" src="http://www.linkedin.com/" preload="salesNavigator.js" autosize="on" minwidth="600"
+         minheight="800" style="width:100%;height:1000px">
+</webview>
+
+<div id="profileConnectedPage" style="display:none">
+    <button class="btn btn-sm btn-default" onclick="$('#people').click();">Back</button>
+    <h4>Action</h4>
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        Add to Automation
+                    </a>
+                </h4>
+                <span class="label label-success pull-right" id="addAutomationProfile"></span>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body accordian-body">
+                    <div class="checkbox">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="radio" id="addAutomationProfileCur" name="addAutomationProfile"
+                                       value="Current Page">&nbsp;Current page
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" id="addAutomationProfileAll" name="addAutomationProfile"
+                                       value="All Page">&nbsp;All pages
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-success btn-sm pull-right"
+                                    id="showAutomationProfileInputModal">Start
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                        Add Tags
+                    </a>
+                </h4>
+                <span class="label label-success pull-right" id="addTagsProfile"></span>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body accordian-body">
+                    <div class="checkbox">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="radio" id="addTagsProfileCur" name="addTagsProfile" value="Current Page">&nbsp;Current
+                                page
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" id="addTagsProfileAll" name="addTagsProfile" value="All Page">&nbsp;All
+                                pages
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-success btn-sm pull-right"
+                                    id="showTagProfileInputModal">Start
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                        Get Profiles
+                    </a>
+                </h4>
+                <span class="label label-success pull-right" id="getProfProfile"></span>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body accordian-body">
+                    <div class="checkbox">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="radio" id="getProfProfileCur" name="getProfProfile" value="Current Page">&nbsp;Current
+                                page
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" id="getProfProfileAll" name="getProfProfile" value="All Page">&nbsp;All
+                                pages
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-success btn-sm pull-right">Start</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                        Get Stats
+                    </a>
+                </h4>
+                <span class="label label-success pull-right" id="getStatsProfile"></span>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse">
+                <div class="panel-body accordian-body">
+                    <div class="checkbox">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="radio" id="getStatsProfileCur" name="getStatsProfile" value="Current Page">&nbsp;Current
+                                page
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" id="getStatsProfileAll" name="getStatsProfile" value="All Page">&nbsp;All
+                                pages
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-success btn-sm pull-right">Start</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                        Add to Blacklist
+                    </a>
+                </h4>
+                <span class="label label-success pull-right" id="blacklistProfile"></span>
+            </div>
+
+            <div id="collapseFive" class="panel-collapse collapse">
+                <div class="panel-body accordian-body">
+                    <div class="checkbox">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="radio" id="blacklistProfileCur" name="blacklistProfile"
+                                       value="Current Page">&nbsp;Current page
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" id="blacklistProfileAll" name="blacklistProfile" value="All Page">&nbsp;All
+                                pages
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-success btn-sm pull-right">Start</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+                        Send Message
+                    </a>
+                </h4>
+                <span class="label label-success pull-right" id="sendMessageProfile"></span>
+            </div>
+            <div id="collapseSix" class="panel-collapse collapse">
+                <div class="panel-body accordian-body">
+                    <div class="checkbox">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="radio" id="sendMessageProfileCur" name="sendMessageProfile"
+                                       value="Current Page">&nbsp;Current page
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" id="sendMessageProfileAll" name="sendMessageProfile"
+                                       value="All Page">&nbsp;All pages
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-success btn-sm pull-right"
+                                    id="showMessageProfileEditModal">Start
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="profilePage" style="display:none">
+    <h4>Actions</h4>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    Add to Campaign
+                </a>
+            </h4>
+        </div>
+    </div>
+
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                        Add Tags
+                    </a>
+
+                </h4>
+                <span class="label label-success pull-right" id="addTags"></span>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div class="checkbox">
+                        <label for="checkbox1">
+                            <input type="radio" id="addTagsCur" name="addTags" value="Current Page">&nbsp;Current page
+                            <input type="radio" id="addTagsAll" name="addTags" value="All Page">&nbsp;All pages
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                        Get Profiles
+                    </a>
+                </h4>
+                <span class="label label-success pull-right" id="getProf"></span>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="checkbox">
+                        <label for="checkbox1">
+                            <input type="radio" id="getProfCur" name="getProf" value="Current Page">Current page
+                            <input type="radio" id="getProfAll" name="getProf" value="All Page">All page
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                        Get Stats
+                    </a>
+                </h4>
+                <span class="label label-success pull-right" id="getStats"></span>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="checkbox">
+                        <label for="checkbox1">
+                            <input type="radio" id="getStatsCur" name="getStats" value="Current Page">Current page
+                            <input type="radio" id="getStatsAll" name="getStats" value="All Page">All page
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                        Add to Blacklist
+                    </a>
+                </h4>
+                <span class="label label-success pull-right" id="blacklist"></span>
+            </div>
+            <div id="collapseFive" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="checkbox">
+                        <label for="checkbox1">
+                            <input type="radio" id="blacklistCur" name="blacklist" value="Current Page">Current page
+                            <input type="radio" id="blacklistAll" name="blacklist" value="All Page">All page
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+                        Send Message
+                    </a>
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="groupPage" style="display:none">
+    <h4>Actions</h4>
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        Get Members
+                    </a>
+                </h4>
+                <span class="label label-success pull-right" id="getMembers"></span>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body accordian-body">
+                    <div class="checkbox">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="radio" id="getMembersCur" name="getMembers" value="Current Page">&nbsp;Current
+                                page
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" id="getMembersAll" name="getMembers" value="All Page">&nbsp;All
+                                pages
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-success btn-sm pull-right">Start</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                        Message Members
+                    </a>
+                </h4>
+                <span class="label label-success pull-right" id="messageMembers"></span>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body accordian-body">
+                    <div class="checkbox">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="radio" id="messageMembersCur" name="messageMembers" value="Current Page">&nbsp;Current
+                                page
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" id="messageMembersAll" name="messageMembers" value="All Page">&nbsp;All
+                                pages
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-success btn-sm pull-right">Start</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                        Connect to 2+ members
+                    </a>
+                </h4>
+                <span class="label label-success pull-right" id="connectTwoMembers"></span>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body accordian-body">
+                    <div class="checkbox">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="radio" id="connectTwoMembersCur" name="connectTwoMembers"
+                                       value="Current Page">&nbsp;Current page
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" id="connectTwoMembersAll" name="connectTwoMembers" value="All Page">&nbsp;All
+                                pages
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-success btn-sm pull-right">Start</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="peoplePage" style="display:none">
+    <h4>Action</h4>
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        Add to Automation
+                    </a>
+                </h4>
+                <span class="label label-success pull-right" id="addAutomation"></span>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body accordian-body">
+                    <div class="checkbox">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="radio" id="addAutomationCur" name="addAutomatlion" value="Current Page">&nbsp;Current
+                                page
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" id="addAutomationAll" name="addAutomation" value="All Page">&nbsp;All
+                                pages
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-success btn-sm pull-right"
+                                    id="showAutomationInputModal">Start
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                        Add Tags
+                    </a>
+                </h4>
+                <span class="label label-success pull-right" id="addTags"></span>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body accordian-body">
+                    <div class="checkbox">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="radio" id="addTagsCur" name="addTags" value="Current Page">&nbsp;Current
+                                page
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" id="addTagsAll" name="addTags" value="All Page">&nbsp;All pages
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-success btn-sm pull-right" id="showTagInputModal">
+                                Start
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                        Get Profiles
+                    </a>
+                </h4>
+                <span class="label label-success pull-right" id="getProf"></span>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body accordian-body">
+                    <div class="checkbox">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="radio" id="getProfCur" name="getProf" value="Current Page">&nbsp;Current
+                                page
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" id="getProfAll" name="getProf" value="All Page">&nbsp;All pages
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-success btn-sm pull-right" id="btnGetProfiles">Start
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                        Get Stats
+                    </a>
+                </h4>
+                <span class="label label-success pull-right" id="getStats"></span>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse">
+                <div class="panel-body accordian-body">
+                    <div class="checkbox">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="radio" id="getStatsCur" name="getStats" value="Current Page">&nbsp;Current
+                                page
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" id="getStatsAll" name="getStats" value="All Page">&nbsp;All pages
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-success btn-sm pull-right">Start</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                        Add to Blacklist
+                    </a>
+                </h4>
+                <span class="label label-success pull-right" id="blacklist"></span>
+            </div>
+
+            <div id="collapseFive" class="panel-collapse collapse">
+                <div class="panel-body accordian-body">
+                    <div class="checkbox">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="radio" id="blacklistCur" name="blacklist" value="Current Page">&nbsp;Current
+                                page
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" id="blacklistAll" name="blacklist" value="All Page">&nbsp;All pages
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-success btn-sm pull-right" id="btnAddToBlackList">
+                                Start
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+                        Send Message
+                    </a>
+                </h4>
+                <span class="label label-success pull-right" id="sendMessage"></span>
+            </div>
+            <div id="collapseSix" class="panel-collapse collapse">
+                <div class="panel-body accordian-body">
+                    <div class="checkbox">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="radio" id="sendMessageCur" name="sendMessage" value="Current Page">&nbsp;Current
+                                page
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" id="sendMessageAll" name="sendMessage" value="All Page">&nbsp;All
+                                pages
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-success btn-sm pull-right" id="showMessageEditModal">
+                                Start
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-primary fade" id="modal-input-automations" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Add people to automations
+                </h4>
+            </div>
+            <div class="form-group"><br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="ccmonth">&nbsp;&nbsp;&nbsp;&nbsp;Select automations to add to people</label>
+                    </div>
+                </div>
+                <div class="modal-body" id="addToAutomationModal">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="automationsBulkAction" name="automationsBulkAction">
+                    Add
+                </button>
+                <button type="button" class="btn btn-danger btn-flat md-close" data-dismiss="modal"> Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-primary fade" id="modal-input-tags" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Input Tags
+                </h4>
+            </div>
+            <div class="modal-body" id="addToTagModal">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="tagsBulkAction" name="tagsBulkAction"> Input Tags
+                </button>
+                <button type="button" class="btn btn-danger btn-flat md-close" data-dismiss="modal"> Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-primary fade" id="modal-input-messages" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Send Message
+                </h4>
+            </div>
+            <div class="modal-body" id="addMessages">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="ccmonth">Message</label>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <select class="form-control" id="sendRecomRequestSelect"
+                                        onchange="showMessageStyleLinkedIn(this);">
+                                    <option value="selectFromTemplate">Select from Template</option>
+                                    <option value="customMessages">Custom Messages</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label for="ccmonth">Add Field</label>
+                                <select class="form-control" id="addField_create">
+                                    <option value="none">None</option>
+                                    <option value="FirstCurrentCompanyName">First Current Company Name</option>
+                                    <option value="FirstName">First Name</option>
+                                    <option value="FirstNameFix">First Name Fix</option>
+                                    <option value="TitleIfApplicable">Title if applicable</option>
+                                    <option value="Country.State.City">Country, State, City</option>
+                                    <option value="SharedGroups-NamesOfTop3">Shared Groups-Names of top3</option>
+                                    <option value="NoOfSharedGroups">No of shared groups</option>
+                                    <option value="MutualContacts-NameOfTop3">Mutual Contacts - Names of top 3</option>
+                                    <option value="NoOfMutualContacts">No of mutual contacts</option>
+                                    <option value="CurrentTitle">Current Title</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="ccmonth">&nbsp;</label>
+                                    <button type="button" class="btn btn-info" id="add_exText_create"><i class="fa fa-edit"></i>Add
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="sendRecomRequestSelectTemplateLI">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <select class="form-control" id="sendRecomRequestSelectListLI">
+                                    </select>
+                                    <br>
+                                    <textarea id="sendRecomRequestTextListLI" name="textarea_message_edit" rows="9"
+                                              class="form-control" placeholder="Content.."
+                                              style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 194px;">
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="sendRecomRequestSelectCustomLI" style="display:none">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <textarea id="sendRecomRequestSelectCMLI" name="textarea_message_edit" rows="9"
+                                              class="form-control" placeholder="Content.."
+                                              style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 194px;">
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="messageBulkAction" name="tagsBulkAction"> Send
+                    Messages
+                </button>
+                <button type="button" class="btn btn-danger btn-flat md-close" data-dismiss="modal"> Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/pages/linkedin.js"></script>
+<script>
+	var helperLinkedIn = require("./assets/js/helpers/helper-linkedIn.js");
+	helperLinkedIn.initialize();
+
+	setTimeout(function() {
+		helperLinkedIn.setWebViewSessions();
+	} , 5000);
+
+	setTimeout(function() {
+		$("#match-content").css("display" , "none");
+		mainTag.style.paddingRight = "5px";
+		footerTag.style.paddingRight = "5px";
+	} , 10);
+		add_exText_create.addEventListener('click', function() {
+			let textarea = $('#addMessages').find('textarea');
+			if (addField_create.value != 'none') {
+				var tmp = '{{Contact.' + addField_create.value + '}}';
+				var cursorPos = textarea.prop('selectionStart');
+				var v = textarea.val();
+				var textBefore = v.substring(0, cursorPos);
+				var textAfter = v.substring(cursorPos, v.length);
+				textarea.val(textBefore + tmp + textAfter);
+			}
+		});
+
+</script>

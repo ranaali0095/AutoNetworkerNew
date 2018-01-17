@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Linkedin Automation">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Real, Admin, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+
+    <title>AutoNetworker(0.0.5)</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-style">
+
+    <!-- Remove following comment to add Right to Left Support or add class rtl to body -->
+    <!-- <link href="assets/css/bootstrap-rtl.min.css" rel="stylesheet"> -->
+
+    <link href="assets/css/jquery.mmenu.css" rel="stylesheet">
+    <link href="assets/css/simple-line-icons.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <!-- <link href="assets/css/style.min.css" rel="stylesheet" id="main-style"> -->
+    <link href="assets/css/style.css" rel="stylesheet" id="main-style">
+    <link href="assets/css/add-ons.min.css" rel="stylesheet">
+    <link href="assets/css/linkedIn.css" rel="stylesheet">
+
+    <!-- Remove following comment to add Right to Left Support or add class rtl to body -->
+    <!-- <link href="assets/css/style.rtl.min.css" rel="stylesheet"> -->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="assets/js/jquery-1.11.1.min.js"></script>
+
+    <script>
+			try {
+				$ = jQuery = module.exports;
+				// If you want module.exports to be empty, uncomment:
+				// module.exports = {};
+			} catch ( e ) {}
+    </script>
+
+    <script type="text/javascript" src="https://cdn.scaledrone.com/scaledrone.min.js"></script>
+
+    <script type="text/javascript">
+			if ( typeof module === 'object' ) {
+				window.module = module;
+				module = undefined;
+			}
+    </script>
+
+    <style>
+        .outer {
+            width: 100%;
+            overflow: hidden;
+            *position: relative;
+        }
+
+        .inner {
+            float: left;
+            position: relative;
+            left: 50%;
+        }
+
+        .inner img {
+            display: block;
+            position: relative;
+            left: -50%;
+        }
+    </style>
+
+    <script src="pouchdb.js"></script>
+    <script src="pouchdb.find.js"></script>
+    <script src="pouchdb.upsert.js"></script>
+</head>
+
+
+<!-- BODY options, add following classes to body to change options
+
+		1. 'sidebar-minified'     - Switch sidebar to minified version (width 50px)
+		2. 'sidebar-hidden'		  - Hide sidebar
+		3. 'rtl'				  - Switch to Right to Left Mode
+		4. 'container'			  - Boxed layout
+		5. 'static-sidebar'		  - Static Sidebar
+		6. 'static-header'		  - Static Header
+	-->
+
+<body>
+<div id="Notification-container"
+     style="position:absolute; left:30%; right:30%; top:0;z-index: 20;height: 40px;background-color:white;"
+     align="center"></div>
+<!-- start: Header -->
+<div class="navbar" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="index.html" style="padding-top:10px;padding-left:5px">
+            <img src="./assets/img/logo.png" style="height:30px; width:190px;">
+        </a>
+    </div>
+    <ul class="nav navbar-nav navbar-actions navbar-left">
+        <li class="visible-md visible-lg"><a href="#" id="main-menu-toggle"><i class="fa fa-bars"></i></a></li>
+        <li class="visible-xs visible-sm"><a href="#" id="sidebar-menu"><i class="fa fa-bars"></i></a></li>
+    </ul>
+    <form class="navbar-form navbar-left">
+        <i class="fa fa-search"></i>
+        <input type="text" class="form-control" placeholder="Are you looking for something ?">
+    </form>
+    <ul class="nav navbar-nav navbar-right visible-md visible-lg">
+        <li><span class="timer"><i class="icon-clock"></i> <span id="clock"></span></span>
+        </li>
+        <li>
+            <content>
+            </content>
+        </li>
+        <li style="color:gray" id="visit"><a href="#" id="match-content-oper"><i class="fa fa-bars"></i></a>
+        </li>
+    </ul>
+</div>
+<!-- end: Header -->
+<!-- start: Main Menu -->
+<div class="sidebar">
+    <div class="sidebar-collapse" style="overflow-y: auto; overflow-x: hidden; height: 100%;">
+        <div class="sidebar-header" style="height:125px;text-align:center">
+            <div class="outer">
+                <div class="search-result--person">
+                    <div class="search-result__wrapper">
+                        <figure class="search-result__image" style="margin-left: 34%;">
+                            <img src="assets/img/ghost-person.svg" style="margin-left: 10px;" class="lazy-image loaded">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2>John Doe123</h2>
+            </div>
+        </div>
+        <div class="sidebar-menu">
+            <ul class="nav nav-sidebar" id="nav-sidebar-id">
+                <li><a id="linkedin" href="linkedin.html"><i class="fa fa-linkedin"></i><span
+                        class="text"> LinkedIn</span></a></li>
+                <li><a href="salesNavigator.html"><i class="icon-eye"></i><span class="text"> Sales Navigator</span></a>
+                </li>
+                <!--<li><a href="dashboard.html"><i class="icon-home"></i><span class="text"> Dashboard</span></a></li>-->
+                <!--<li><a href="invitations.html"><i class="icon-speech"></i><span class="text"> Invitations</span></a>-->
+                <!--</li>-->
+                <!--<li><a href="gettingStarted.html"><i class="icon-question"></i><span-->
+                        <!--class="text"> Getting Started</span></a></li>-->
+                <li><a href="automation.html"><i class="icon-paper-clip"></i><span class="text"> Automation</span></a>
+                </li>
+                <li><a id="people" href="people.html"><i class="icon-users"></i><span class="text"> People</span></a>
+                </li>
+                <li><a href="messageTemplates.html"><i class="icon-note"></i><span
+                        class="text"> Message Templates</span></a></li>
+                <li><a id="queue" href="queue.html"><i class="icon-list"></i><span class="text"> Queue</span></a></li>
+                <!--<li><a href="blackList.html"><i class="icon-book-open"></i><span class="text"> Blacklist</span></a></li>-->
+                <li><a href="settings.html"><i class="icon-settings"></i><span class="text"> Settings</span></a></li>
+                <!--<li><a href="utilities.html"><i class="icon-wrench"></i><span class="text"> Utilities</span></a></li>-->
+                <li><a href="account.html"><i class="icon-user"></i><span class="text"> Account</span></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+</div>
+<!-- end: Content -->
+
+
+<!--Delete database modal-->
+<div id="database-exist" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                <h4 class="modal-title" id="myModalLabel">Delete Database</h4>
+            </div>
+            <div class="modal-body">
+                <p>Database already exist, do you want to delete it?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="deleteDatabase"
+                        name="deleteDatabase"> Delete
+                </button>
+                <button type="button" class="btn btn-primary" id="cancelDatabaseCleaning" data-dismiss="modal"> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--add login credentials status-->
+<div id="database-not-exist" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                <h4 class="modal-title" id="database-exist-cancel">Info</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form role="form">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h1>Login Information</h1>
+                                </div>
+                            </div>
+
+                            <div id="login-error-msg" style="display: none" class="alert alert-danger">
+                                Email/Password isn't correct!
+                            </div>
+                            <div id="login-waiting-msg" style="display: none" class="alert alert-info">
+                                Please wait it won't take more than 1 minute.
+                            </div>
+                            <div id="login-scrap-msg" style="display: none" class="alert alert-info">
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="date01">Email</label>
+                                <div class="input-group">
+                                    <input type="email" id="account_email" name="account_email" class="form-control">
+                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label" for="date01">Password</label>
+                                <div class="input-group">
+                                    <input type="password" id="account_password" name="account_password"
+                                           class="form-control">
+                                    <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+                                </div>
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="button" class="btn btn-primary" id="account_save_btn"
+                                        onclick="helperIndex.saveAccount();"><i class="fa fa-save "></i> Save Account
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--database cleaning status-->
+<div id="databaseCleaningStart" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Info</h5>
+            </div>
+            <div class="modal-body"></div>
+            <div class="alert alert-warning" role="alert" style="margin: 0 2em 2em 2em;">
+                <strong>Waiting!</strong> Database is cleaning.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Payment signup-->
+<div id="paymentSignUp" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Payment</h5>
+            </div>
+            <div class="modal-body">
+                <iframe
+                        id="paymentFrame"
+                        src="https://testingco.recurly.com/subscribe/single"
+                        height="700" width="100%" style="border:none;" scrolling="yes"></iframe>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="databaseCleaningStop" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Info</h5>
+            </div>
+            <div class="modal-body"></div>
+            <div class="alert alert-success" role="alert" style="margin: 0 2em 2em 2em; display:none;">
+                <strong>Done!</strong> Database is clean.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--refreshing people list-->
+<div id="refreshing-people-list" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1"
+     role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Info</h5>
+            </div>
+            <div class="modal-body"></div>
+            <div class="alert alert-warning" role="alert" style="margin: 0 2em 2em 2em;">
+                <strong>Waiting!</strong> Refreshing People's List.
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="row">
+        <div class="col-sm-12" style="background-color:white; height:40px;font-size:12px;padding-top:6px">
+            &copy;
+            <?php echo date("Y") ?> 2017 &nbsp; &nbsp;&nbsp;<a href="#">support@mail.com</a> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#">Contact Information</a> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#">Terms of Service</a> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#">Privacy Policy</a>
+        </div>
+        <!--/.col-->
+    </div>
+    <!--/.row-->
+</footer>
+
+<!-- start: JavaScript-->
+<!--[if !IE]>-->
+
+<script src="assets/js/jquery-3.1.0.min.js"></script>
+
+<!--<![endif]-->
+
+<!--[if IE]>
+
+<script src="assets/js/jquery-1.11.1.min.js"></script>
+
+<![endif]-->
+
+<!--[if !IE]>-->
+
+<script type="text/javascript">
+	window.jQuery || document.write("<script src='assets/js/jquery-3.1.0.min.js'>" + "<" + "/script>");
+</script>
+
+<!--<![endif]-->
+
+<!--[if IE]>
+
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='assets/js/jquery-1.11.1.min.js'>" + "<" + "/script>");
+</script>
+
+<![endif]-->
+<script src="assets/js/jquery-migrate-1.4.1.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- theme scripts -->
+<script src="assets/plugins/pace/pace.min.js"></script>
+<script src="assets/js/jquery.mmenu.min.js"></script>
+<script src="assets/js/core.min.js"></script>
+<script src="assets/plugins/jquery-cookie/jquery.cookie.min.js"></script>
+<script src="assets/js/demo.min.js"></script>
+<script src="database_script.js"></script>
+<script type="text/javascript">
+
+	if ( typeof(require) !== 'undefined' ) {
+		var ipc = require('electron').ipcRenderer;
+		$(document).ready(function() {
+			if ( typeof ipc !== "undefined" ) {
+				console.log("ipc working");
+				ipc.send("start-autoUpdate");
+			}
+		});
+	}
+</script>
+
+<script>
+	var USER_EMAIL = "";
+	var USER_USERNAME = "";
+	var helperIndex = require('./assets/js/helpers/helper-index.js');
+
+	//check if user credentials exists in database
+	helperIndex.checkLogin();
+
+	//when user request to the delete the database
+	document.getElementById('deleteDatabase').addEventListener('click' , () => {
+		$('#databaseCleaningStart').modal('show');
+		helperIndex.cleanDatabase();
+		setTimeout(function() {
+			$('#databaseCleaningStart').modal('hide');
+		} , 6000);
+
+	});
+
+	document.getElementById('cancelDatabaseCleaning').addEventListener('click' , function() {
+		helperIndex.afterCancelCleaning();
+	});
+
+	var Recurly = require('recurly-js');
+	var recurly = new Recurly({
+		API_KEY: '600fa0628f964f2f8721589eaa7ce283' ,
+		SUBDOMAIN: 'testingco' ,
+		DEBUG: false ,
+		API_VERSION: 2.9 // optional
+	});
+
+	function checkPayment ( dbUser ) {
+		console.log('Checking payment status');
+		console.log(dbUser)
+		let email = dbUser.user_email;
+		USER_EMAIL = dbUser.user_email;
+		USER_USERNAME = dbUser.username;
+		recurly.accounts.get(email , function( errResponse , response ) {
+			if ( !errResponse ) {
+				console.log('Checking payment status');
+				if ( !response.data.account.has_active_subscription._ ) {
+					$('#paymentFrame').src = "https://testingco.recurly.com/subscribe/single?first_name=Rana&last_name=Example&email=" +
+						USER_EMAIL;
+					$('#paymentSignUp').modal('show');
+				}
+			} else {
+				$('#paymentSignUp').modal('show');
+							$('#paymentFrame').src = "https://testingco.recurly.com/subscribe/single?first_name=Rana&last_name=Example&email=" +
+								USER_EMAIL;
+			}
+		});
+	};
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+build/
+
+dist/
+AutoNetworker-win32-x64/
+# Dependency directories
+node_modules/
+release-builds/
+.idea/

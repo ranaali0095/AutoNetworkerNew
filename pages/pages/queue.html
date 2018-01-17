@@ -1,0 +1,142 @@
+<script>
+	loadCSS("assets/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css");
+
+	var requireJS = [ "assets/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js" , "assets/js/onload.js" ];
+
+	loadJS(requireJS , "assets/js/pages/ui-sliders-progress.js");
+</script>
+<style>
+    table > thead > tr > th {
+        background-color: #e4e5e6;
+        vertical-align: middle;
+        font-size: 15px;
+    }
+
+    .cellStyleName {
+        font-size: 20px;
+    }
+
+    .table tbody > tr {
+        border-bottom: 1px solid #e4e5e6
+    }
+
+    .table tbody > tr > td {
+        vertical-align: middle;
+    }
+
+    td > img {
+        border-radius: 50em;
+        height: 60%
+    }
+
+    table {
+        border: 1px solid #e4e5e6
+    }
+
+    .largeTable {
+        vertical-align: middle;
+    }
+
+    .largeTable tr {
+        height: 50px;
+    }
+
+    .largeTable tbody > tr :hover {
+        background-color: #f2f2f2;
+    }
+
+    .smallTable :hover {
+        background-color: #f2f2f2;
+    }
+</style>
+<ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li class="active">Queue</li>
+</ol>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2><i class="fa fa-tasks"></i>Todays Stats</h2>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-2">
+                    <blockquote style="border-color:#63c2de;padding:2px 15px;">
+                        <div style="color:grey;">Profile Visits</div>
+                        <div class="pull-right">
+                            <img src="assets/img/u4384.png"></img>
+                        </div>
+                        <div style="font-size:25px;color:black;">
+                            145
+                        </div>
+                    </blockquote>
+                </div>
+                <div class="col-md-2">
+                    <blockquote style="border-color:#f86c6b;padding:2px 15px;">
+                        <div style="color:grey;">Requests Made</div>
+                        <div class="pull-right">
+                            <img src="assets/img/u4389.png"></img>
+                        </div>
+                        <div style="font-size:25px;color:black;">
+                            120
+                        </div>
+                    </blockquote>
+                </div>
+                <div class="col-md-2">
+                    <blockquote style="border-color:#f8cb00;padding:2px 15px;">
+                        <div style="color:grey;">Messages Sent</div>
+                        <div class="pull-right">
+                            <img src="assets/img/u4394.png"></img>
+                        </div>
+                        <div style="font-size:25px;color:black;">
+                            25
+                        </div>
+                    </blockquote>
+                </div>
+                <div class="col-md-2">
+                    <blockquote style="border-color:#4dbd74;padding:2px 15px;">
+                        <div style="color:grey;">Connection Requests Sent</div>
+                        <div class="pull-right">
+                            <img src="assets/img/u4399.png"></img>
+                        </div>
+                        <div style="font-size:25px;color:black;">
+                            12
+                        </div>
+                    </blockquote>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-box info" style="padding:10px 5px 5px 5px;min-height:100px">
+                        <i class="fa fa-calendar" style="padding:0px 0px 0px 0px;line-height:90px"></i>
+                        <div class="count">145</div>
+                        <div class="title">Days</div>
+                        <div class="desc">Days to complete current processes</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pull-right text-right">
+                            <a href="#"><i class="fa fa-trash-o"></i> Clear This List</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2><i class="fa fa-tasks"></i>Tasks</h2>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12" id="taskTable">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>helper_db = require('./assets/js/helpers/helper-db.js');</script>
+<script src="assets/js/pages/queue_pageOper.js"></script>
